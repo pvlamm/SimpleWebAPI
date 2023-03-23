@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Caching.Memory;
 
     using SimpleWebAPI.Application.Common.Interfaces;
     using SimpleWebAPI.Domain.Entities;
