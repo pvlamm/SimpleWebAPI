@@ -11,6 +11,8 @@
 
     using MediatR;
 
+    using ValidationException = Exceptions.ValidationException;
+
     public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {

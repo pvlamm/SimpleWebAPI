@@ -7,40 +7,27 @@
     using MediatR;
     using SimpleWebAPI.Application.Common.Interfaces;
 
-    public class CreatePersonCommand : INotification
+    public class CreatePersonCommand : IRequest<bool>
     {
         public string Name { get; set; }
         public string Address { get; set; }
     }
 
-    public class CreatePersonCommandHandler : INotificationHandler<CreatePersonCommand>
+    public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, bool>
     {
+        private readonly IPersonMemoryCache _personMemoryCache;
         private readonly IPersonService _personService;
 
-        public CreatePersonCommandHandler(IPersonService personService)
+        public CreatePersonCommandHandler(IPersonService personService, IPersonMemoryCache personMemoryCache)
         {
+            _personMemoryCache = personMemoryCache ?? throw new ArgumentNullException(nameof(personMemoryCache));
             _personService = personService ?? throw new ArgumentNullException(nameof(personService));
         }
 
-        public Task Handle(CreatePersonCommand request, CancellationToken cancellationToken)
-        {
-            return _personService.CreatePersonAsync(request.Name, request.Address, cancellationToken);
-        }
-    }
-
-    public class CreatePersonCommandCacheHandler : INotificationHandler<CreatePersonCommand>
-    {
-        private readonly IPersonMemoryCache _personMemoryCache;
-
-        public CreatePersonCommandCacheHandler(IPersonMemoryCache personMemoryCache)
-        {
-            _personMemoryCache = personMemoryCache ?? throw new ArgumentNullException(nameof(personMemoryCache));
-        }
-
-        public Task Handle(CreatePersonCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
         {
             _personMemoryCache.CreatePerson(request.Name, request.Address);
-            return Task.CompletedTask;
+            return await _personService.CreatePersonAsync(request.Name, request.Address, cancellationToken);
         }
     }
 }

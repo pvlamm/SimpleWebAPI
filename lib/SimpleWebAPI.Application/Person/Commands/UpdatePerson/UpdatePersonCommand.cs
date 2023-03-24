@@ -8,40 +8,27 @@
 
     using SimpleWebAPI.Application.Common.Interfaces;
 
-    public class UpdatePersonCommand : INotification
+    public class UpdatePersonCommand : IRequest<bool>
     {
         public string Name { get; set; }
         public string Address { get; set; }
     }
 
-    public class UpdatePersonCommandHandler : INotificationHandler<UpdatePersonCommand>
+    public class UpdatePersonCommandHandler : IRequestHandler<UpdatePersonCommand, bool>
     {
+        private readonly IPersonMemoryCache _personMemoryCache;
         private readonly IPersonService _personService;
 
-        public UpdatePersonCommandHandler(IPersonService personService)
+        public UpdatePersonCommandHandler(IPersonMemoryCache personMemoryCache, IPersonService personService)
         {
+            _personMemoryCache = personMemoryCache ?? throw new ArgumentNullException(nameof(personMemoryCache));
             _personService = personService ?? throw new ArgumentNullException(nameof(personService));
         }
 
-        public Task Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
-        {
-            return _personService.UpdatePersonAsync(request.Name, request.Address, cancellationToken);
-        }
-    }
-
-    public class UpdatePersonCommandCacheHandler : INotificationHandler<UpdatePersonCommand>
-    {
-        private readonly IPersonMemoryCache _personMemoryCache;
-
-        public UpdatePersonCommandCacheHandler(IPersonMemoryCache personMemoryCache)
-        {
-            _personMemoryCache = personMemoryCache ?? throw new ArgumentNullException(nameof(personMemoryCache));
-        }
-
-        public Task Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
         {
             _personMemoryCache.UpdatePerson(request.Name, request.Address);
-            return Task.CompletedTask;
+            return await _personService.UpdatePersonAsync(request.Name, request.Address, cancellationToken);
         }
     }
 }

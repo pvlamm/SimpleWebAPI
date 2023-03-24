@@ -7,7 +7,7 @@
 
     public class CreatePersonValidation : AbstractValidator<CreatePersonCommand>
     {
-        public CreatePersonValidation(IPersonService personService)
+        public CreatePersonValidation(IPersonService personService, IPersonMemoryCache personMemoryCache)
         {
             RuleFor(x => x.Name)
                 .NotEmpty()

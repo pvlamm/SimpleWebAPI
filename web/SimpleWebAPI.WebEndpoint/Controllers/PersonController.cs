@@ -36,7 +36,7 @@
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Post(CreatePersonCommand command, CancellationToken token)
         {
-            await _mediator.Publish(command, token);
+            await _mediator.Send(command, token);
             return NoContent();
         }
 
@@ -44,15 +44,15 @@
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put(UpdatePersonCommand command, CancellationToken token)
         {
-            await _mediator.Publish(command, token);
-            return Ok();
+            await _mediator.Send(command, token);
+            return NoContent();
         }
 
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Delete(string Name, CancellationToken token)
+        public async Task<IActionResult> Delete(DeletePersonCommand command, CancellationToken token)
         {
-            await _mediator.Publish(new DeletePersonCommand { Name = Name }, token);
+            await _mediator.Send(command, token);
             return NoContent();
         }
     }
