@@ -12,8 +12,7 @@
             RuleFor(x => x.Name)
                 .NotEmpty()
                     .WithMessage(ValidationErrorMessages.ERROR_NAME_CANNOT_BE_EMPTY)
-                .Must(name =>
-                    !personService.PersonExists(name))
+                .Must(name => personService.PersonExists(name))
                     .WithMessage(ValidationErrorMessages.ERROR_NAME_DOES_NOT_EXIST);
         }
     }

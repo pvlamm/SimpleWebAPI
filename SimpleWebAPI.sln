@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWebAPI.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebAPI.WebEndpoint", "web\SimpleWebAPI.WebEndpoint\SimpleWebAPI.WebEndpoint.csproj", "{9F4F9566-9996-4E4C-9D79-B1AC772DA400}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebApi.ApplicationTests", "test\SimpleWebApi.ApplicationTests\SimpleWebApi.ApplicationTests.csproj", "{B0FE2179-190F-475A-8055-B73B0B788724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9F4F9566-9996-4E4C-9D79-B1AC772DA400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F4F9566-9996-4E4C-9D79-B1AC772DA400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F4F9566-9996-4E4C-9D79-B1AC772DA400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0FE2179-190F-475A-8055-B73B0B788724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0FE2179-190F-475A-8055-B73B0B788724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0FE2179-190F-475A-8055-B73B0B788724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0FE2179-190F-475A-8055-B73B0B788724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{A8000AAC-AE88-4CBE-8FF2-72FABBD33DE3} = {0822DA7F-6E68-47DE-AFD1-16875574C5E8}
 		{479F03E0-8826-487E-9BF3-73A4016F9890} = {0822DA7F-6E68-47DE-AFD1-16875574C5E8}
 		{9F4F9566-9996-4E4C-9D79-B1AC772DA400} = {59C41883-7A7C-4BA9-8512-2477A1BFBD88}
+		{B0FE2179-190F-475A-8055-B73B0B788724} = {BE5DF984-9A86-4EA2-B81C-4FB67C86FD15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C5312AB-A857-4B32-BB7F-B840D4DF4690}
